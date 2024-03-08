@@ -31,13 +31,16 @@ class Lecture16 {
         // return 10.5. If the list is empty, sum should return 0 and average should
         // return 0.0.
 
-        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(11, -7, 3, 42, 0, 14));
-        System.out.println(sum(numbers));
+        CustomList numbers = new CustomList(Arrays.asList(11, -7, 3, 42, 0, 14));
+        System.out.println("Sum: " + numbers.sum());
+        System.out.println("Average: " + numbers.average());
 
         // Section 16.4: An IntList Interface
 
         // 29. What are some advantages of creating an IntList interface and having both
         // types of lists implement it?
+        // Consistency, by having a common set of operations, your code is more readable and maintainable.
+        // Polymorphism, we can write methods with the parameter IntList or any object that implements it.
 
         // 30. Write a method called firstLast that can accept either type of integer
         // list as a parameter and that moves the first element of the list to the end.
@@ -115,18 +118,16 @@ class Lecture16 {
         // change the list to store [17, 4, 19, 8, 1].
     }
 
-    // Sum method
-    public static int sum(ArrayList<Integer> list) {
-        int sum = 0;
-        // Check for emptiness
+    // Average method
+    public static double average(ArrayList<Integer> list) {
+        double sum = 0;
         if (list.isEmpty()) {
-            return sum;
+            return 0.0;
         }
-        // Cumulative sum algo
-        for (Integer num : list) {
+        for (int num : list) {
             sum += num;
         }
-        return sum;
+        return sum / list.size();
     }
 
 
