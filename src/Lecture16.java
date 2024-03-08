@@ -1,3 +1,7 @@
+// London Paris
+// IT-CS-143-Lecture-16
+import java.util.*;
+
 class Lecture16 {
     public static void main(String[] args) {
         System.out.println("Hello from lecture 16");
@@ -26,6 +30,9 @@ class Lecture16 {
         // call of list.sum() should return 63 and the call of list.average() should
         // return 10.5. If the list is empty, sum should return 0 and average should
         // return 0.0.
+
+        ArrayList<Integer> numbers = new ArrayList<>(Arrays.asList(11, -7, 3, 42, 0, 14));
+        System.out.println(sum(numbers));
 
         // Section 16.4: An IntList Interface
 
@@ -107,4 +114,20 @@ class Lecture16 {
         // stores the values [1, 8, 19, 4, 17], the call of list.reverse(); should
         // change the list to store [17, 4, 19, 8, 1].
     }
+
+    // Sum method
+    public static int sum(ArrayList<Integer> list) {
+        int sum = 0;
+        // Check for emptiness
+        if (list.isEmpty()) {
+            return sum;
+        }
+        // Cumulative sum algo
+        for (Integer num : list) {
+            sum += num;
+        }
+        return sum;
+    }
+
+
 }
