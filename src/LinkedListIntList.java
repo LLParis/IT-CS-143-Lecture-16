@@ -3,7 +3,7 @@
 import java.util.*;
 
 class LinkedListIntList implements IntList {
-    private static LinkedList<Integer> list;
+    private LinkedList<Integer> list;
 
     public LinkedListIntList() {
         this.list = new LinkedList<>();
@@ -14,10 +14,23 @@ class LinkedListIntList implements IntList {
     }
 
     public int get(int index) {
+        if (list.isEmpty()) {
+            throw new IndexOutOfBoundsException("List is empty");
+        }
         return list.get(index);
     }
 
     public int size() {
         return list.size();
+    }
+    public void moveToEnd() {
+        if (!list.isEmpty()) {
+            int first = list.remove(0);
+            list.add(first);
+        }
+    }
+    @Override
+    public String toString() {
+        return list.toString();
     }
 }

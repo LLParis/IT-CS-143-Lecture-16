@@ -30,8 +30,8 @@ class Lecture16 {
         // call of list.sum() should return 63 and the call of list.average() should
         // return 10.5. If the list is empty, sum should return 0 and average should
         // return 0.0.
-
-        CustomList numbers = new CustomList(Arrays.asList(11, -7, 3, 42, 0, 14));
+        List<Integer> numbersList = Arrays.asList(11, -7, 3, 42, 0, 14);
+        CustomList numbers = new CustomList(new ArrayList<>(numbersList));
         System.out.println("Sum: " + numbers.sum());
         System.out.println("Average: " + numbers.average());
 
@@ -47,16 +47,49 @@ class Lecture16 {
         // For example, if a variable called list contains the values [12, 45, 78, 20,
         // 36], the call of firstLast(list); will change the list to store [45, 78, 20,
         // 36, 12].
+        // Example usage with ArrayListIntList
+        IntList arrayList = new ArrayListIntList();
+        arrayList.add(12);
+        arrayList.add(45);
+        arrayList.add(78);
+        arrayList.add(20);
+        arrayList.add(36);
+
+        System.out.println("Before firstLast: " + arrayList);
+        firstLast(arrayList);
+        System.out.println("After firstLast: " + arrayList);
+
+        // Example usage with LinkedListIntList
+        IntList linkedList = new LinkedListIntList();
+        linkedList.add(12);
+        linkedList.add(45);
+        linkedList.add(78);
+        linkedList.add(20);
+        linkedList.add(36);
+
+        System.out.println("Before firstLast: " + linkedList);
+        firstLast(linkedList);
+        System.out.println("After firstLast: " + linkedList);
 
         // Section 16.5: LinkedList<E>
 
         // 31. What are some changes that need to be made to the linked list class to
         // convert it from storing integers to storing objects of type E?
+        // Declare the linked list as generic by using E parameter
+        // Update the type of data to E
+        // Update method signature to type E
 
         // 32. Why is an iterator especially useful with linked lists?
+        // You can modify the list while traversing it
+        // Iterators promote efficient memory usage by only loading one element at a time even though
+        // the list may be large.
+        // Iterators can traverse forwards and backwards.
 
         // 33. What state does the linked list iterator store? How does the iterator
         // know if there are more elements left to examine?
+        // Current node, travel direction, and position marker.
+        // It knows if there are more by the Next Node Pointer, if there is a next node, it goes there.
+        // Also hasNext method
 
         // Exercises:
 
@@ -72,6 +105,7 @@ class Lecture16 {
         // construct exactly N nodes to be added. You may not use any auxiliary data
         // structures such as arrays or ArrayLists to solve this problem. Your method
         // should run in O(N) time where N is the number of nodes in the list.
+        numbers.doubleList();
 
         // 19. Write a method called rotate that moves the value at the front of a list
         // of integers to the end of the list.
@@ -84,6 +118,8 @@ class Lecture16 {
         // any new nodes to solve this problem nor change any of the data values stored
         // in the nodes. You must solve the problem by rearranging the links of the
         // list.
+        Rotate r1 = new Rotate();
+        r1.rotate((CustomList) numbers);
 
         // 21.  Write a method called surroundWith that takes an integer x and an
         // integer y as parameters and surrounds all nodes in the list containing the
@@ -118,17 +154,36 @@ class Lecture16 {
         // change the list to store [17, 4, 19, 8, 1].
     }
 
+    public static void firstLast(IntList lst) {
+        lst.moveToEnd();
+    }
+
     // Average method
-    public static double average(ArrayList<Integer> list) {
-        double sum = 0;
+    public static void doubleList(List<Integer> list) {
         if (list.isEmpty()) {
-            return 0.0;
+            return;
         }
-        for (int num : list) {
-            sum += num;
+
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            list.add(list.get(i)); // Append elements from the original list again to double them
         }
-        return sum / list.size();
     }
 
 
+}
+class Rotate {
+    public static void main(String[] args) {
+        // Example usage:
+        List<Integer> list = List.of(12, 45, 78, 20, 36);
+        rotate((CustomList) list);
+        System.out.println(list);  // Output: [45, 78, 20, 36, 12]
+    }
+
+    public static void rotate(CustomList lst) {
+        if (lst.size() > 1) { // Check if the list has more than one element
+            int front = (int) lst.remove(0); // Remove the front element
+            lst.add(front); // Add the removed front element to the end of the list
+        }
+    }
 }

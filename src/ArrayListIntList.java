@@ -7,13 +7,14 @@ interface IntList {
     void add(int value);
     int get(int index);
     int size();
+    void moveToEnd();
 }
 
 class ArrayListIntList implements IntList {
-    private static ArrayList<Integer> list;
+    private ArrayList<Integer> list;
 
-    public ArrayListIntList(ArrayList<Integer> list) {
-        this.list = list;
+    public ArrayListIntList() {
+        list = new ArrayList<>();
     }
 
     public void add(int value) {
@@ -21,6 +22,9 @@ class ArrayListIntList implements IntList {
     }
 
     public int get(int index) {
+        if (list.isEmpty()) {
+            throw new IndexOutOfBoundsException("List is empty");
+        }
         return list.get(index);
     }
 
@@ -28,10 +32,15 @@ class ArrayListIntList implements IntList {
         return list.size();
     }
 
-    public void moveFirstToEnd() {
+    public void moveToEnd() {
         if (!list.isEmpty()) {
             int first = list.remove(0);
             list.add(first);
         }
     }
+    @Override
+    public String toString() {
+        return list.toString();
+    }
+
 }
