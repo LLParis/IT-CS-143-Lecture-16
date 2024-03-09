@@ -76,6 +76,32 @@ class CustomList {
             list.add(list.remove(0));
         }
     }
+    public void surroundWith(int x, int y) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) == x) {
+                // Insert y before and after the current index
+                list.add(i, y);
+                i++; // Skip the newly added y
+                list.add(i + 1, y);
+                i++; // Skip the x value which was just surrounded
+            }
+        }
+    }
+    public void reverse() {
+        int left = 0; // start of the list
+        int right = list.size() - 1; // end of the list
+
+        while (left < right) {
+            // Swap the elements
+            int temp = list.get(left);
+            list.set(left, list.get(right));
+            list.set(right, temp);
+
+            // Move the indices towards the center
+            left++;
+            right--;
+        }
+    }
     @Override
     public String toString() {
         return list.toString();

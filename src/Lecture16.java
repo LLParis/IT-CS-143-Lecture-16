@@ -146,12 +146,28 @@ class Lecture16 {
         // [0, 4, 1, 4, 2, 4, 1, 4]    // stored in list1
         // [0, 1, 1, 1, 0]             // stored in list2
         // [0, 1, 2]                   // stored in list3
+        CustomList list1 = new CustomList(new ArrayList<>(Arrays.asList(0, 1, 2, 1)));
+        CustomList list2 = new CustomList(new ArrayList<>(Arrays.asList(0, 1, 0)));
+        CustomList list3 = new CustomList(new ArrayList<>(Arrays.asList(0, 1, 2)));
+
+        list1.surroundWith(1, 4); // surround 1s with 4s in list1
+        list2.surroundWith(1, 1); // surround 1s with 1s in list2
+        list3.surroundWith(3, 4); // surround 3s with 4s in list3
+
+        System.out.println("List1: " + list1);
+        System.out.println("List2: " + list2);
+        System.out.println("List3: " + list3);
+
 
         // 22. Write a method called reverse that reverses the order of the elements in
         // the list.
         // (This is very challenging!) For example, if the variable list initially
         // stores the values [1, 8, 19, 4, 17], the call of list.reverse(); should
         // change the list to store [17, 4, 19, 8, 1].
+        CustomList list = new CustomList(new ArrayList<>(Arrays.asList(1, 8, 19, 4, 17)));
+        System.out.println("Original list: " + list);
+        list.reverse();
+        System.out.println("Reversed list: " + list);
     }
 
     public static void firstLast(IntList lst) {
